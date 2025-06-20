@@ -3,72 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suno Inc. アプリ情報</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 40px;
-            background-color: #f4f7f6;
-            color: #333;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .button {
-            display: inline-block;
-            background-color: #4CAF50; /* 緑色 */
-            color: white;
-            padding: 12px 25px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            margin: 10px;
-        }
-        .button:hover {
-            background-color: #45a049;
-        }
-        .footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
+    <title>KarTee Production - あなたのメディカルライフをちょっとハッピーに</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Suno Inc. アプリケーション情報</h1>
-        <p>Suno Inc.が提供するアプリの公式情報ページです。</p>
-        <p>各アプリの詳細や最新情報については、以下の公式ウェブサイトをご覧ください。</p>
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-toggle" aria-label="メニューを開く">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo-area">
+                <img src="assets/images/kartee_logo.png" alt="KarTee Logo" class="logo">
+                <p class="logo-subtext">記録、振り返り、自分への理解</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="search-toggle" aria-label="検索">
+                <i class="fas fa-search"></i>
+            </button>
+            <a href="https://www.linkedin.com/company/your-company/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:home.karte.info@gmail.com" aria-label="Gmail">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </header>
 
-        <a href="https://sites.google.com/view/kartee-production/home" class="button" target="_blank" rel="noopener noreferrer">
-            アプリの詳細を見る (公式ウェブサイトへ)
-        </a>
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>あなたのメディカルライフを<br>ちょっとハッピーに</h1>
+                <p>Karteeは通院の記録や、日々の服薬管理、気になった時の体温や<br>血圧などのバイタルのグラフ化などをサポートいたします</p>
+            </div>
+            <div class="hero-image">
+                <img src="assets/images/happy_medical_life_dog.png" alt="Make Your Medical-LIFE a little happier with a dog illustration">
+            </div>
+        </section>
 
-        <a href="https://sunoinc.github.io/privacy-policy.html/" class="button">
-            プライバシーポリシー
-        </a>
+        <section class="features-section">
+            <h2>Karteeの主な機能</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <img src="assets/images/feature_01_visit_record.jpg" alt="通院記録をわかりやすく">
+                    <p>通院記録をわかりやすく</p>
+                </div>
+                <div class="feature-item">
+                    <img src="assets/images/feature_02_medication_list.jpg" alt="お好きなアイコンで薬の詳細設定">
+                    <p>お好きなアイコンで薬の詳細設定</p>
+                </div>
+                <div class="feature-item">
+                    <img src="assets/images/feature_03_calendar_medication.jpg" alt="選んだアイコンとカレンダーで服薬管理">
+                    <p>選んだアイコンとカレンダーで服薬管理</p>
+                </div>
+                <div class="feature-item">
+                    <img src="assets/images/feature_04_medical_institutions.jpg" alt="かかりつけ医を一括化し診療予定も">
+                    <p>かかりつけ医を一括化し診療予定も</p>
+                </div>
+                <div class="feature-item">
+                    <img src="assets/images/feature_05_vital_graph.jpg" alt="グラフ化されたバイタルで傾向を理解">
+                    <p>グラフ化されたバイタルで傾向を理解</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        <p class="footer">
-            ご不明な点がございましたら、お問い合わせください。<br>
-            [home.karte.info@gmail.com]
-        </p>
+    <footer class="footer">
+        <p>お問い合わせ: <a href="mailto:home.karte.info@gmail.com">home.karte.info@gmail.com</a></p>
+        </footer>
+
+    <div class="sidebar" id="sidebar">
+        <button class="close-sidebar" aria-label="メニューを閉じる">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#" class="sidebar-link">Home</a></li>
+            <li><a href="#" class="sidebar-link">Kartee Help</a></li>
+            <li><a href="#" class="sidebar-link">Privacy Policy</a></li>
+        </ul>
     </div>
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        // サイドバーの開閉JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeSidebar = document.querySelector('.close-sidebar');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            });
+
+            closeSidebar.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
