@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button class="sidebar-toggle" aria-label="メニューを開閉する">
+        <span class="icon"></span>
+        <span class="icon"></span>
+        <span class="icon"></span>
+    </button>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-sidebar" aria-label="メニューを閉じる">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="https://sunoinc.github.io/" class="sidebar-link">Home</a></li>
+                <li><a href="https://sunoinc.github.io/kartee-help" class="sidebar-link">Kartee Help</a></li>
+                <li><a href="https://sunoinc.github.io/privacy-policy.html" class="sidebar-link">Privacy Policy</a></li>
+                </ul>
+        </nav>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
     <header class="kartee-help-header">
         <img src="../assets/images/Kartee_Help.png" alt="Karteeヘルプロゴ" class="kartee-help-header-logo">
     </header>
@@ -141,5 +160,23 @@
     <footer class="kartee-help-footer">
         <p>お問い合わせ： <a href="mailto:home.karte.info@gmail.com">home.karte.info@gmail.com</a></p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.sidebar-toggle');
+            const closeButton = document.querySelector('.close-sidebar');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+                document.body.classList.toggle('sidebar-open'); // bodyにクラスを追加/削除
+            }
+
+            toggleButton.addEventListener('click', toggleSidebar);
+            closeButton.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar); // オーバーレイクリックで閉じる
+        });
+    </script>
 </body>
 </html>

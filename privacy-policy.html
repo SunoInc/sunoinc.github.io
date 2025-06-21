@@ -5,21 +5,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>プライバシーポリシー</title>
     <style>
+        /* 既存のプライバシーポリシーページのスタイル */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 20px;
             padding: 20px;
             max-width: 800px;
-            margin: auto;
+            margin-left: auto; /* 中央寄せ */
+            margin-right: auto; /* 中央寄せ */
+            color: #333; /* 文字色を明示 */
+            background-color: #f4f4f4; /* 背景色を明示 */
+            padding-top: 60px; /* ハンバーガーメニューとの重なりを避けるため */
+            position: relative; /* 必要に応じて調整 */
         }
         h1 {
             text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Karteeロゴのスタイルを調整 (既存のstyle属性を優先させつつ、位置調整) */
+        .policy-header-logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            /* style="width: 160px; height: 40px; z-index: 1000; display: block;" はHTMLに残す */
+            /* position, top, left などの固定配置は、ハンバーガーメニューと重なる可能性があるので注意 */
+        }
+
+        /* ハンバーガーメニューとサイドバーのスタイル */
+        /* Kartee Helpページで機能したCSSをここに配置します */
+
+        .sidebar-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001; /* サイドバーより手前に表示 */
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            padding: 0;
+        }
+
+        .sidebar-toggle .icon {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333; /* アイコンの色 */
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -220px; /* 最初は画面外に隠す */
+            width: 200px; /* ここで幅を固定 */
+            height: 100%;
+            background-color: #f8f8f8; /* サイドバーの背景色 */
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+            transition: left 0.3s ease-in-out;
+            z-index: 1000;
+            padding-top: 60px; /* ハンバーガーボタンとの兼ね合いで上部に余白 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.open {
+            left: 0; /* 開いたときに表示 */
+        }
+
+        .sidebar-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            text-align: right;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+        }
+
+        .sidebar-nav ul li a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* サイドバーが開いているときにスクロールを禁止する */
+        body.sidebar-open {
+            overflow: hidden;
+        }
+
+        /* レスポンシブ調整（必要であれば） */
+        @media (max-width: 768px) {
+            .sidebar-toggle {
+                top: 15px; /* モバイルでの位置調整 */
+                left: 15px;
+            }
+            .sidebar {
+                width: 180px; /* モバイルでの幅調整 */
+                padding-top: 50px;
+            }
+            .sidebar-header {
+                padding: 10px 15px;
+            }
+            .close-sidebar {
+                font-size: 1.8em;
+            }
+            .sidebar-nav ul li a {
+                padding: 12px 15px;
+            }
+            body {
+                padding: 15px;
+                padding-top: 50px; /* モバイルでのコンテンツ上部余白調整 */
+            }
+            .policy-header-logo {
+                width: 140px; /* モバイルでのロゴサイズ調整 */
+                height: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <img src="assets/images/Kartee.png" alt="Karteeアイコン" style="width: 160px; height: 40px; z-index: 1000; display: block;">
+    <button class="sidebar-toggle" aria-label="メニューを開閉する">
+        <span class="icon"></span>
+        <span class="icon"></span>
+        <span class="icon"></span>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-sidebar" aria-label="メニューを閉じる">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="https://sunoinc.github.io/" class="sidebar-link">Home</a></li>
+                <li><a href="https://sunoinc.github.io/kartee-help" class="sidebar-link">Kartee Help</a></li>
+                <li><a href="https://sunoinc.github.io/privacy-policy.html" class="sidebar-link">Privacy Policy</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <img src="assets/images/Kartee.png" alt="Karteeアイコン" class="policy-header-logo" style="width: 160px; height: 40px; z-index: 1000; display: block;">
 
     <h1>個人情報保護方針</h1>
     <p>本プライバシーポリシーは、Kartee（以下「当アプリ」といいます）がユーザーから収集する情報、およびその利用目的について説明します。当アプリをご利用いただく前に、本ポリシーをよくお読みください。</p>
@@ -71,5 +264,28 @@
     </ul>
 
     <p>最終更新日: 2025年6月14日</p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.sidebar-toggle');
+            const closeButton = document.querySelector('.close-sidebar');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            if (toggleButton && closeButton && sidebar && overlay) { // 要素が存在するか確認
+                function toggleSidebar() {
+                    sidebar.classList.toggle('open');
+                    overlay.classList.toggle('active');
+                    document.body.classList.toggle('sidebar-open'); // bodyにクラスを追加/削除
+                }
+
+                toggleButton.addEventListener('click', toggleSidebar);
+                closeButton.addEventListener('click', toggleSidebar);
+                overlay.addEventListener('click', toggleSidebar); // オーバーレイクリックで閉じる
+            } else {
+                console.warn("Sidebar elements not found. Hamburger menu functionality might be incomplete on Privacy Policy page.");
+            }
+        });
+    </script>
 </body>
 </html>
