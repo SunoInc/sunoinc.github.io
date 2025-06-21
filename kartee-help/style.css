@@ -1,0 +1,158 @@
+/* Kartee Helpページ専用のスタイル */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.kartee-help-header {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.kartee-help-header-logo {
+    max-width: 150px; /* ロゴ画像の最大幅を調整 */
+    height: auto;
+    /* margin-bottom: 10px; */ /* ヘッダーテキストを削除したので不要 */
+}
+
+/* .kartee-help-header h1 { */ /* ヘッダーテキストを削除したので不要 */
+/* font-size: 2.5em; */
+/* color: #333; */
+/* margin: 0; */
+/* } */
+
+.kartee-help-main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.help-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* 角丸のため */
+}
+
+.help-details {
+    border-bottom: 1px solid #eee;
+}
+
+.help-details:last-child {
+    border-bottom: none;
+}
+
+.help-summary {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none; /* デフォルトのマーカーを削除 */
+    position: relative; /* 矢印の位置調整用 */
+    justify-content: space-between; /* 子要素を両端に配置 */
+}
+
+/* Chromeなどのブラウザでdetailsのデフォルトマーカーを消す */
+details > summary::-webkit-details-marker {
+    display: none;
+}
+details > summary::marker {
+    display: none;
+}
+
+
+.summary-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+/* テキスト部分がアイコンと矢印の間のスペースを占めるように調整 */
+.help-summary > span:first-of-type {
+    flex-grow: 1;
+    margin-right: auto; /* テキストと矢印の間にスペースを最大限取る */
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #333;
+    margin-left: 15px; /* 矢印の左マージンを調整 */
+    transition: transform 0.2s ease-in-out;
+    flex-shrink: 0; /* 矢印が縮まないように */
+}
+
+.help-details[open] .arrow {
+    transform: rotate(180deg);
+}
+
+.details-content {
+    padding: 10px 20px 20px 65px;
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.8;
+}
+
+.details-content {
+    padding: 10px 20px 20px 65px; /* 左側にアイコンの分の余白 */
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.8;
+}
+
+.details-content p {
+    margin-bottom: 10px;
+}
+
+.details-content ul {
+    list-style-type: disc; /* リストのマーカー */
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.details-content ul li {
+    margin-bottom: 5px;
+}
+
+.kartee-help-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    font-size: 0.9em;
+    color: #777;
+    border-top: 1px solid #eee;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 600px) {
+    /* .kartee-help-header h1 { */ /* ヘッダーテキストを削除したので不要 */
+    /* font-size: 1.8em; */
+    /* } */
+
+    .help-summary {
+        font-size: 1.1em;
+        padding: 12px 15px;
+    }
+
+    .summary-icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+    }
+
+    .details-content {
+        padding: 10px 15px 15px 50px;
+    }
+}
