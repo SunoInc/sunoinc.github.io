@@ -104,6 +104,7 @@ button {
 
 .hero-content h1 {
     font-size: 2.8rem; /* スクリーンショットのタイトルサイズに調整 */
+    max-width: 450px;
     font-weight: 700;
     margin-bottom: 20px;
     color: #333;
@@ -116,6 +117,7 @@ button {
 }
 
 .hero-image img {
+    flex: 1;
     max-width: 100%;
     height: auto;
     width: 400px; /* スクリーンショットの画像サイズに合わせて調整 */
