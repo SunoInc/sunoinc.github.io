@@ -9,7 +9,7 @@ body {
     overflow-x: hidden; /* 横スクロールバーを非表示にする */
 }
 
-/* ヘッダー */
+/* ヘッダー (共通) */
 .header {
     display: flex;
     justify-content: space-between;
@@ -51,8 +51,10 @@ body {
     gap: 20px; /* アイコン間のスペース */
 }
 
-.header-right i {
-    font-size: 1.2rem;
+/* ヘッダー内のFont Awesomeアイコンのスタイル */
+.header-right i,
+.header-left .menu-toggle i {
+    font-size: 1.2rem; /* デフォルトサイズ */
     color: #555;
     cursor: pointer;
 }
@@ -67,8 +69,13 @@ button {
     border: none;
     cursor: pointer;
     padding: 0;
-    font-size: 1.2rem; /* アイコンのサイズ */
     color: #555;
+}
+
+/* Homeページのハンバーガーメニューアイコンサイズ (Kartee Helpに合わせる) */
+.header .menu-toggle i {
+    font-size: 1.5rem; /* Kartee Helpに合わせたハンバーガーアイコンのサイズ */
+    color: #333; /* Kartee Helpに合わせた色 */
 }
 
 /* ヒーローセクション */
@@ -169,7 +176,7 @@ button {
     font-weight: 500;
 }
 
-/* フッター */
+/* フッター (共通) */
 .footer {
     padding: 40px 25px;
     text-align: center;
@@ -187,18 +194,18 @@ button {
     text-decoration: underline;
 }
 
-/* サイドバー (ハンバーガーメニュー) */
+/* サイドバー (共通) */
 .sidebar {
     position: fixed;
     top: 0;
-    left: -300px; /* 初期状態では画面外 */
-    width: 200px;
+    left: -220px; /* 初期状態では画面外に隠す (Kartee Helpの幅に合わせる) */
+    width: 200px; /* Kartee Helpの幅に合わせる */
     height: 100%;
-    background-color: #fff;
+    background-color: #f8f8f8; /* Kartee Helpの背景色に合わせる */
     box-shadow: 2px 0 5px rgba(0,0,0,0.2);
     transition: left 0.3s ease-in-out;
     z-index: 2000;
-    padding: 20px;
+    padding-top: 60px; /* クローズボタンとの重なりを避けるため */
 }
 
 .sidebar.active {
@@ -209,29 +216,39 @@ button {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 1.5rem;
-    color: #555;
+    font-size: 2em; /* Kartee Helpのサイズに合わせる */
+    color: #333; /* Kartee Helpの色に合わせる */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 .sidebar ul {
     list-style: none;
-    padding: 60px 0 0 0; /* クローズボタンとの重なりを避ける */
+    padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
+/* サイドバーのリンクのフォントサイズとホバー効果をHomeページに合わせる */
 .sidebar ul li a {
     text-decoration: none;
     color: #333;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Privacy PolicyのCSSに合わせて1remに統一 */
+    font-weight: 400; /* Privacy PolicyのCSSに合わせて400に統一 */
     display: block;
-    padding: 10px 0;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .sidebar ul li a:hover {
-    color: #007bff;
+    color: #007bff; /* Kartee Helpのホバー色に合わせる */
+    background-color: #e0e0e0; /* Kartee Helpのホバー背景色に合わせる */
 }
 
 .overlay {
@@ -250,4 +267,246 @@ button {
 .overlay.active {
     opacity: 1;
     visibility: visible;
+}
+
+/* サイドバーが開いているときにスクロールを禁止する */
+body.sidebar-open {
+    overflow: hidden;
+}
+
+/* Kartee Helpページ固有のスタイルを統合 */
+.kartee-help-main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.help-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* 角丸のため */
+}
+
+.help-details {
+    border-bottom: 1px solid #eee;
+}
+
+.help-details:last-child {
+    border-bottom: none;
+}
+
+.help-summary {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none; /* デフォルトのマーカーを削除 */
+    position: relative; /* 矢印の位置調整用 */
+    justify-content: space-between; /* 子要素を両端に配置 */
+}
+
+/* Chromeなどのブラウザでdetailsのデフォルトマーカーを消す */
+details > summary::-webkit-details-marker {
+    display: none;
+}
+details > summary::marker {
+    display: none;
+}
+
+.summary-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+/* テキスト部分がアイコンと矢印の間のスペースを占めるように調整 */
+.help-summary > span:first-of-type {
+    flex-grow: 1;
+    margin-right: auto; /* テキストと矢印の間にスペースを最大限取る */
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #333;
+    margin-left: 15px; /* 矢印の左マージンを調整 */
+    transition: transform 0.2s ease-in-out;
+    flex-shrink: 0; /* 矢印が縮まないように */
+}
+
+.help-details[open] .arrow {
+    transform: rotate(180deg);
+}
+
+.details-content {
+    padding: 10px 20px 20px 65px; /* 左側にアイコンの分の余白 */
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.8;
+}
+
+.details-content p {
+    margin-bottom: 10px;
+}
+
+.details-content ul {
+    list-style-type: disc; /* リストのマーカー */
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.details-content ul li {
+    margin-bottom: 5px;
+}
+
+/* Privacy Policyページ固有のスタイルを統合 */
+.privacy-policy-content {
+    margin: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin-left: auto; /* 中央寄せ */
+    margin-right: auto; /* 中央寄せ */
+    color: #333; /* 文字色を明示 */
+    background-color: #f4f4f4; /* 背景色を明示 */
+    padding-top: 20px; /* ヘッダーの高さ考慮 */
+}
+
+.privacy-policy-content h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.privacy-policy-content h2 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #555;
+}
+.privacy-policy-content p {
+    margin-bottom: 10px;
+}
+.privacy-policy-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.privacy-policy-content ul li {
+    margin-bottom: 5px;
+}
+.privacy-policy-content a {
+    color: #007bff;
+    text-decoration: none;
+}
+.privacy-policy-content a:hover {
+    text-decoration: underline;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+    /* ヘッダーのパディング調整 */
+    .header {
+        padding: 10px 15px;
+    }
+    
+    /* ロゴエリアの調整 */
+    .logo-area {
+        flex-direction: row; /* モバイルでロゴとサブテキストを横並びに */
+        align-items: center;
+        gap: 5px;
+    }
+    .logo {
+        height: 25px; /* モバイルでのロゴサイズ調整 */
+    }
+    .logo-subtext {
+        font-size: 0.7rem; /* モバイルでのサブテキストサイズ調整 */
+    }
+
+    /* ヘッダー内のアイコンサイズ調整 */
+    .header-right i,
+    .header-left .menu-toggle i {
+        font-size: 1.3rem; /* モバイルでのアイコンサイズ調整 */
+    }
+    .header-right {
+        gap: 15px; /* モバイルでのアイコン間スペース調整 */
+    }
+
+    /* ヒーローセクション */
+    .hero-section {
+        padding: 40px 15px;
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .hero-image img {
+        width: 300px; /* モバイルでの画像サイズ調整 */
+    }
+
+    /* 機能セクション */
+    .features-section {
+        padding: 50px 15px;
+    }
+    .features-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    .feature-grid {
+        grid-template-columns: 1fr; /* モバイルでは1列に */
+        gap: 30px;
+    }
+    .feature-item img {
+        margin-bottom: 15px;
+    }
+    .feature-item p {
+        font-size: 0.95rem;
+    }
+
+    /* フッター */
+    .footer {
+        padding: 30px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* サイドバーのモバイル調整 */
+    .sidebar {
+        width: 180px; /* モバイルでの幅調整 */
+        padding-top: 50px;
+        left: -190px; /* モバイルでの非表示位置 */
+    }
+    .close-sidebar {
+        font-size: 1.8em;
+    }
+    .sidebar ul li a {
+        font-size: 0.95rem; /* モバイルでのフォントサイズに再調整 */
+        padding: 12px 15px;
+    }
+
+    /* Kartee Helpページ固有のモバイル調整 */
+    .help-summary {
+        font-size: 1.1em;
+        padding: 12px 15px;
+    }
+    .summary-icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+    }
+    .details-content {
+        padding: 10px 15px 15px 50px;
+    }
+
+    /* Privacy Policyページ固有のモバイル調整 */
+    .privacy-policy-content {
+        margin: 15px;
+        padding: 15px;
+        padding-top: 15px; /* ヘッダーの高さ考慮 */
+    }
 }

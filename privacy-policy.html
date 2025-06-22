@@ -4,287 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>プライバシーポリシー</title>
-    <style>
-        /* 既存のプライバシーポリシーページのスタイル */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            padding: 20px;
-            max-width: 800px;
-            margin-left: auto; /* 中央寄せ */
-            margin-right: auto; /* 中央寄せ */
-            color: #333; /* 文字色を明示 */
-            background-color: #f4f4f4; /* 背景色を明示 */
-            padding-top: 60px; /* ハンバーガーメニューとの重なりを避けるため */
-            position: relative; /* 必要に応じて調整 */
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        h2 {
-            margin-top: 25px;
-            margin-bottom: 15px;
-            color: #555;
-        }
-        p {
-            margin-bottom: 10px;
-        }
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            margin-bottom: 10px;
-        }
-        ul li {
-            margin-bottom: 5px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Karteeロゴのスタイルを調整 (既存のstyle属性を優先させつつ、位置調整) */
-        .policy-header-logo {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 20px;
-            /* style="width: 160px; height: 40px; z-index: 1000; display: block;" はHTMLに残す */
-            /* position, top, left などの固定配置は、ハンバーガーメニューと重なる可能性があるので注意 */
-        }
-
-        /* ハンバーガーメニューとサイドバーのスタイル */
-        /* Kartee Helpページで機能したCSSをここに配置します */
-
-        .sidebar-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1001; /* サイドバーより手前に表示 */
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 25px;
-            padding: 0;
-        }
-
-        .sidebar-toggle .icon {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background-color: #333; /* アイコンの色 */
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -220px; /* 最初は画面外に隠す */
-            width: 200px; /* ここで幅を固定 */
-            height: 100%;
-            background-color: #f8f8f8; /* サイドバーの背景色 */
-            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-            transition: left 0.3s ease-in-out;
-            z-index: 1000;
-            padding-top: 60px; /* ハンバーガーボタンとの兼ね合いで上部に余白 */
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar.open {
-            left: 0; /* 開いたときに表示 */
-        }
-
-        .sidebar-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-            text-align: right;
-        }
-
-        .close-sidebar {
-            background: none;
-            border: none;
-            font-size: 2em;
-            cursor: pointer;
-            color: #333;
-        }
-
-        .sidebar-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .sidebar-nav ul li a {
-            display: block;
-            padding: 15px 20px;
-            text-decoration: none;
-            color: #333;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.2s ease;
-        }
-
-        .sidebar-nav ul li a:hover {
-            background-color: #e0e0e0;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* サイドバーが開いているときにスクロールを禁止する */
-        body.sidebar-open {
-            overflow: hidden;
-        }
-
-        /* レスポンシブ調整（必要であれば） */
-        @media (max-width: 768px) {
-            .sidebar-toggle {
-                top: 15px; /* モバイルでの位置調整 */
-                left: 15px;
-            }
-            .sidebar {
-                width: 180px; /* モバイルでの幅調整 */
-                padding-top: 50px;
-            }
-            .sidebar-header {
-                padding: 10px 15px;
-            }
-            .close-sidebar {
-                font-size: 1.8em;
-            }
-            .sidebar-nav ul li a {
-                padding: 12px 15px;
-            }
-            body {
-                padding: 15px;
-                padding-top: 50px; /* モバイルでのコンテンツ上部余白調整 */
-            }
-            .policy-header-logo {
-                width: 140px; /* モバイルでのロゴサイズ調整 */
-                height: auto;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <button class="sidebar-toggle" aria-label="メニューを開閉する">
-        <span class="icon"></span>
-        <span class="icon"></span>
-        <span class="icon"></span>
-    </button>
-
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <button class="close-sidebar" aria-label="メニューを閉じる">&times;</button>
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-toggle" aria-label="メニューを開く">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo-area">
+                <img src="assets/images/Kartee.png" alt="Kartee Logo" class="logo">
+                <p class="logo-subtext">記録、振り返り、自分への理解</p>
+            </div>
         </div>
-        <nav class="sidebar-nav">
-            <ul>
-                <li><a href="https://sunoinc.github.io/" class="sidebar-link">Home</a></li>
-                <li><a href="https://sunoinc.github.io/kartee-help" class="sidebar-link">Kartee Help</a></li>
-                <li><a href="https://sunoinc.github.io/privacy-policy.html" class="sidebar-link">Privacy Policy</a></li>
-            </ul>
-        </nav>
+        <div class="header-right">
+            <button class="search-toggle" aria-label="検索">
+                <i class="fas fa-search"></i>
+            </button>
+            <a href="https://www.linkedin.com/company/107251717/admin/dashboard/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:home.karte.info@gmail.com" aria-label="Gmail">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="privacy-policy-content">
+        <h1>個人情報保護方針</h1>
+        <p>本プライバシーポリシーは、Kartee（以下「当アプリ」といいます）がユーザーから収集する情報、およびその利用目的について説明します。当アプリをご利用いただく前に、本ポリシーをよくお読みください。</p>
+        <p>当アプリを運営する者として、個人情報の重要性を強く認識するとともに、個人情報を正しく扱うことが重大な責務と考えております。お預かりした個人情報を大切に保護し、信頼され続けるために、以下の個人情報保護方針を理解し、確実な履行に努めます。</p>
+
+        <h2>1. 個人情報の取得及び利用</h2>
+        <p>事業活動に必要な範囲で、ご本人からの適切な個人情報の取得、利用及び提供を行います。また、その過程及び取り扱いにおいて、個人情報の目的外利用は一切行わないことを規定し、措置を講じます。また、利用を超えて個人情報の取り扱いを行う場合には、あらかじめご本人の同意を得ます。</p>
+
+        <h2>2. 収集する情報</h2>
+        <p>当アプリでは、以下の情報を収集することがあります：</p>
+        <ul>
+            <li>名前（ニックネーム）</li>
+            <li>デバイスまたはその他のID</li>
+        </ul>
+
+        <p>また、当アプリのサービスの快適な利用のために以下の情報を取得することがあります。ご本人からの提供がない場合は、情報を取得しません。：</p>
+        <ul>
+            <li>メールアドレス</li>
+            <li>電話番号</li>
+            <li>健康に関する情報</li>
+            <li>当アプリのサービスの利用履歴やアクセス情報</li>
+        </ul>
+
+        <h2>3. 収集した情報の利用目的</h2>
+        <p>取得した情報を以下に定める目的のために使用します：</p>
+        <ul>
+            <li>当アプリのサービスの提供・運用</li>
+            <li>ユーザー認証</li>
+            <li>広告の配信・その成果確認</li>
+            <li>当アプリのサービスに関するご案内・お問い合わせへの対応</li>
+            <li>ユーザー体験の向上のための分析</li>
+            <li>法令に基づく要請がある場合</li>
+        </ul>
+
+        <h2>4. 個人情報の第三者への開示</h2>
+        <p>法令による場合等を除き、ご本人からの同意がない限り、第三者への個人情報の開示は行いません。</p>
+
+        <h2>5. 個人情報の開示、訂正又は削除等</h2>
+        <p>ご本人から個人情報の開示、訂正又は削除等のご依頼があった場合は、ご本人であることを確認させていただいた上で、迅速に対応させていただきます。</p>
+        <p>ユーザーは、収集された個人情報の確認、修正、削除を要求する権利があります。これらの権利を行使する場合は、当アプリのサポートまでご連絡ください。</p>
+
+        <h2>6. プライバシーポリシーの変更</h2>
+        <p>当アプリは、必要に応じて本プライバシーポリシーを変更することがあります。変更がある場合は、当アプリ内または公式ウェブサイトにて通知します。</p>
+        
+        <h2>7. お問い合わせ</h2>
+        <p>当アプリのプライバシー・ポリシーや個人情報に関する相談に関しては、以下のアドレスにてお受けしております：</p>
+        <ul>
+            <li>home.karte.info@gmail.com</li>
+        </ul>
+
+        <p>最終更新日: 2025年6月14日</p>
     </div>
 
+    <footer class="footer">
+        <p>お問い合わせ: <a href="mailto:home.karte.info@gmail.com">home.karte.info@gmail.com</a></p>
+    </footer>
+
+    <div class="sidebar" id="sidebar">
+        <button class="close-sidebar" aria-label="メニューを閉じる">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="https://sunoinc.github.io" class="sidebar-link">Home</a></li>
+            <li><a href="https://sunoinc.github.io/kartee-help" class="sidebar-link">Kartee Help</a></li>
+            <li><a href="https://sunoinc.github.io/privacy-policy.html" class="sidebar-link">Privacy Policy</a></li>
+        </ul>
+    </div>
     <div class="overlay" id="overlay"></div>
 
-    <img src="assets/images/Kartee.png" alt="Karteeアイコン" class="policy-header-logo" style="width: 160px; height: 40px; z-index: 1000; display: block;">
-
-    <h1>個人情報保護方針</h1>
-    <p>本プライバシーポリシーは、Kartee（以下「当アプリ」といいます）がユーザーから収集する情報、およびその利用目的について説明します。当アプリをご利用いただく前に、本ポリシーをよくお読みください。</p>
-    <p>当アプリを運営する者として、個人情報の重要性を強く認識するとともに、個人情報を正しく扱うことが重大な責務と考えております。お預かりした個人情報を大切に保護し、信頼され続けるために、以下の個人情報保護方針を理解し、確実な履行に努めます。</p>
-
-    <h2>1. 個人情報の取得及び利用</h2>
-    <p>事業活動に必要な範囲で、ご本人からの適切な個人情報の取得、利用及び提供を行います。また、その過程及び取り扱いにおいて、個人情報の目的外利用は一切行わないことを規定し、措置を講じます。また、利用を超えて個人情報の取り扱いを行う場合には、あらかじめご本人の同意を得ます。</p>
-
-    <h2>2. 収集する情報</h2>
-    <p>当アプリでは、以下の情報を収集することがあります：</p>
-    <ul>
-        <li>名前（ニックネーム）</li>
-        <li>デバイスまたはその他のID</li>
-    </ul>
-
-    <p>また、当アプリのサービスの快適な利用のために以下の情報を取得することがあります。ご本人からの提供がない場合は、情報を取得しません。：</p>
-    <ul>
-        <li>メールアドレス</li>
-        <li>電話番号</li>
-        <li>健康に関する情報</li>
-        <li>当アプリのサービスの利用履歴やアクセス情報</li>
-    </ul>
-
-    <h2>3. 収集した情報の利用目的</h2>
-    <p>取得した情報を以下に定める目的のために使用します：</p>
-    <ul>
-        <li>当アプリのサービスの提供・運用</li>
-        <li>ユーザー認証</li>
-        <li>広告の配信・その成果確認</li>
-        <li>当アプリのサービスに関するご案内・お問い合わせへの対応</li>
-        <li>ユーザー体験の向上のための分析</li>
-        <li>法令に基づく要請がある場合</li>
-    </ul>
-
-    <h2>4. 個人情報の第三者への開示</h2>
-    <p>法令による場合等を除き、ご本人からの同意がない限り、第三者への個人情報の開示は行いません。</p>
-
-    <h2>5. 個人情報の開示、訂正又は削除等</h2>
-    <p>ご本人から個人情報の開示、訂正又は削除等のご依頼があった場合は、ご本人であることを確認させていただいた上で、迅速に対応させていただきます。</p>
-    <p>ユーザーは、収集された個人情報の確認、修正、削除を要求する権利があります。これらの権利を行使する場合は、当アプリのサポートまでご連絡ください。</p>
-
-    <h2>6. プライバシーポリシーの変更</h2>
-    <p>当アプリは、必要に応じて本プライバシーポリシーを変更することがあります。変更がある場合は、当アプリ内または公式ウェブサイトにて通知します。</p>
-    
-    <h2>7. お問い合わせ</h2>
-    <p>当アプリのプライバシー・ポリシーや個人情報に関する相談に関しては、以下のアドレスにてお受けしております：</p>
-    <ul>
-        <li>home.karte.info@gmail.com</li>
-    </ul>
-
-    <p>最終更新日: 2025年6月14日</p>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleButton = document.querySelector('.sidebar-toggle');
-            const closeButton = document.querySelector('.close-sidebar');
+        // サイドバーの開閉JavaScript (共通)
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeSidebar = document.querySelector('.close-sidebar');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-            if (toggleButton && closeButton && sidebar && overlay) { // 要素が存在するか確認
-                function toggleSidebar() {
-                    sidebar.classList.toggle('open');
-                    overlay.classList.toggle('active');
-                    document.body.classList.toggle('sidebar-open'); // bodyにクラスを追加/削除
-                }
-
-                toggleButton.addEventListener('click', toggleSidebar);
-                closeButton.addEventListener('click', toggleSidebar);
-                overlay.addEventListener('click', toggleSidebar); // オーバーレイクリックで閉じる
-            } else {
-                console.warn("Sidebar elements not found. Hamburger menu functionality might be incomplete on Privacy Policy page.");
+            function toggleSidebar() {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.classList.toggle('sidebar-open'); // bodyにクラスを追加/削除
             }
+
+            if (menuToggle) { // menuToggleが存在するか確認
+                menuToggle.addEventListener('click', toggleSidebar);
+            }
+            if (closeSidebar) { // closeSidebarが存在するか確認
+                closeSidebar.addEventListener('click', toggleSidebar);
+            }
+            if (overlay) { // overlayが存在するか確認
+                overlay.addEventListener('click', toggleSidebar);
+            }
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                });
+            });
         });
     </script>
 </body>

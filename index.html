@@ -74,14 +74,14 @@
 
     <footer class="footer">
         <p>お問い合わせ: <a href="mailto:home.karte.info@gmail.com">home.karte.info@gmail.com</a></p>
-        </footer>
+    </footer>
 
     <div class="sidebar" id="sidebar">
         <button class="close-sidebar" aria-label="メニューを閉じる">
             <i class="fas fa-times"></i>
         </button>
         <ul>
-            <li><a href="#" class="sidebar-link">Home</a></li>
+            <li><a href="https://sunoinc.github.io" class="sidebar-link">Home</a></li>
             <li><a href="https://sunoinc.github.io/kartee-help" class="sidebar-link">Kartee Help</a></li>
             <li><a href="https://sunoinc.github.io/privacy-policy.html" class="sidebar-link">Privacy Policy</a></li>
         </ul>
@@ -89,7 +89,7 @@
     <div class="overlay" id="overlay"></div>
 
     <script>
-        // サイドバーの開閉JavaScript
+        // サイドバーの開閉JavaScript (共通)
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.querySelector('.menu-toggle');
             const closeSidebar = document.querySelector('.close-sidebar');
@@ -97,25 +97,27 @@
             const overlay = document.getElementById('overlay');
             const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-            menuToggle.addEventListener('click', () => {
-                sidebar.classList.add('active');
-                overlay.classList.add('active');
-            });
+            function toggleSidebar() {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.classList.toggle('sidebar-open'); // bodyにクラスを追加/削除
+            }
 
-            closeSidebar.addEventListener('click', () => {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-
-            overlay.addEventListener('click', () => {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-            });
+            if (menuToggle) { // menuToggleが存在するか確認
+                menuToggle.addEventListener('click', toggleSidebar);
+            }
+            if (closeSidebar) { // closeSidebarが存在するか確認
+                closeSidebar.addEventListener('click', toggleSidebar);
+            }
+            if (overlay) { // overlayが存在するか確認
+                overlay.addEventListener('click', toggleSidebar);
+            }
 
             sidebarLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     sidebar.classList.remove('active');
                     overlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
                 });
             });
         });
