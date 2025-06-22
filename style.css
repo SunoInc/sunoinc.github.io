@@ -238,8 +238,9 @@ button {
 .sidebar ul li a {
     text-decoration: none;
     color: #333;
-    font-size: 1rem; /* Privacy PolicyのCSSに合わせて1remに統一 */
-    font-weight: 400; /* Privacy PolicyのCSSに合わせて400に統一 */
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Noto Sans JP', sans-serif; /* この行を追加 */
     display: block;
     padding: 15px 20px;
     border-bottom: 1px solid #eee;
