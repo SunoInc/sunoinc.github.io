@@ -507,7 +507,7 @@ details > summary::marker {
 #customSearchOverlay {
     position: absolute;
     /* top: calc(100% + 10px); はヘッダーの高さに依存するので、具体的な値に調整することも検討 */
-    top: 60px; /* ヘッダーの高さに応じて調整してください */
+    top: 100px; /* ヘッダーの高さに応じて調整してください */
     right: 25px; /* 右端からの距離（header-rightのパディングに合わせる） */
     width: 350px; /* 検索バーの幅を調整 */
     max-width: calc(100% - 50px); /* 左右25pxのパディングを考慮 */
@@ -588,7 +588,7 @@ details > summary::marker {
 /* スマホでの位置調整 */
 @media (max-width: 768px) {
     #customSearchOverlay {
-        top: 50px; /* ヘッダーのモバイル時の高さに合わせて調整 */
+        top: 80px; /* ヘッダーのモバイル時の高さに合わせて調整 */
         right: 15px; /* 右端からの距離（header-rightのモバイル時のパディングに合わせる） */
         max-width: calc(100% - 30px); /* 左右15pxのパディングを考慮 */
     }
