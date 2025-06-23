@@ -130,25 +130,26 @@
     // 検索アイコンのクリックを処理する関数
     function handleSearchIconClick(event) {
         event.preventDefault(); // これがURLが # に変わるのを防ぎます！
+        console.log('Search icon clicked. Attempting to open CSE.'); // 追加ログ
 
         // Google CSE API がロードされているか確認
         if (typeof google !== 'undefined' && google.search && google.search.cse && google.search.cse.element) {
-            // ロードされていれば、検索オーバーレイを起動
+            console.log('Google CSE API is loaded. Calling google.search.cse.element.go("mySearch").'); // 追加ログ
             google.search.cse.element.go('mySearch');
         } else {
-            // もしAPIがまだロードされていなければ、コンソールに警告を表示
-            console.warn('Google Custom Search API is not yet loaded. Please try again in a moment or refresh the page.');
+            console.warn('Google Custom Search API is not yet loaded. Cannot open search overlay.'); // 追加ログ
         }
     }
 
     // DOMコンテンツが完全にロードされたらイベントリスナーを設定
     document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOMContentLoaded fired. Setting up search trigger.'); // 追加ログ
         var trigger = document.getElementById('searchIconTrigger');
         if (trigger) {
-            // 検索アイコンが見つかったらクリックイベントリスナーをアタッチ
+            console.log('Search icon trigger found.'); // 追加ログ
             trigger.addEventListener('click', handleSearchIconClick);
         } else {
-            console.error('Error: Search icon trigger (ID "searchIconTrigger") not found in the DOM.');
+            console.error('Error: Search icon trigger (ID "searchIconTrigger") not found in the DOM.'); // 追加ログ
         }
     });
     </script>
