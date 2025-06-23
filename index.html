@@ -122,32 +122,35 @@
             });
         });
     </script>
+    
     <script async src="https://cse.google.com/cse.js?cx=a09bf9a03237c49f6"></script>
     <div class="gcse-searchbox-only" data-gname="mySearch"></div>
-    <script>
-    // Google CSE の読み込みが完了するのを待つためのヘルパー関数
-    function waitForGoogleSearch() {
-        if (typeof google !== 'undefined' && google.search && google.search.cse && google.search.cse.element) {
-            // Google CSE がロードされたら、クリックイベントを設定
-            document.addEventListener('DOMContentLoaded', function() {
-                var trigger = document.getElementById('searchIconTrigger');
-                if (trigger) {
-                    trigger.addEventListener('click', function(event) {
-                        event.preventDefault(); // デフォルトのリンク動作を防止
 
-                        // Google カスタム検索の指定された要素を起動する
-                        // 'mySearch' は、divの data-gname="mySearch" と一致させる
-                        google.search.cse.element.go('mySearch');
-                    });
-                }
-            });
+    <script>
+    // 検索アイコンのクリックを処理する関数
+    function handleSearchIconClick(event) {
+        event.preventDefault(); // これがURLが # に変わるのを防ぎます！
+
+        // Google CSE API がロードされているか確認
+        if (typeof google !== 'undefined' && google.search && google.search.cse && google.search.cse.element) {
+            // ロードされていれば、検索オーバーレイを起動
+            google.search.cse.element.go('mySearch');
         } else {
-            // まだロードされていない場合は少し待ってから再試行
-            setTimeout(waitForGoogleSearch, 100);
+            // もしAPIがまだロードされていなければ、コンソールに警告を表示
+            console.warn('Google Custom Search API is not yet loaded. Please try again in a moment or refresh the page.');
         }
     }
 
-    waitForGoogleSearch();
+    // DOMコンテンツが完全にロードされたらイベントリスナーを設定
+    document.addEventListener('DOMContentLoaded', function() {
+        var trigger = document.getElementById('searchIconTrigger');
+        if (trigger) {
+            // 検索アイコンが見つかったらクリックイベントリスナーをアタッチ
+            trigger.addEventListener('click', handleSearchIconClick);
+        } else {
+            console.error('Error: Search icon trigger (ID "searchIconTrigger") not found in the DOM.');
+        }
+    });
     </script>
 </body>
 </html>
