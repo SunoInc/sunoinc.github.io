@@ -32,6 +32,10 @@
         </div>
     </header>
 
+    <div id="customSearchOverlay">
+        <div class="gcse-searchbox-only" data-resultsUrl="https://sunoinc.github.io/search-results.html" data-queryParameterName="q"></div>
+    </div>
+
     <main class="kartee-help-main">
         <section class="help-section">
             <details class="help-details">
@@ -172,6 +176,7 @@
     </div>
     <div class="overlay" id="overlay"></div>
 
+    <script async src="https://cse.google.com/cse.js?cx=a09bf9a03237c49f6"></script>
     <script>
         // サイドバーの開閉JavaScript (共通)
         document.addEventListener('DOMContentLoaded', () => {
@@ -180,20 +185,46 @@
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
             const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const searchToggle = document.querySelector('.search-toggle'); // 検索ボタン
+            const customSearchOverlay = document.getElementById('customSearchOverlay'); // 検索オーバーレイ
 
             function toggleSidebar() {
                 sidebar.classList.toggle('active');
                 overlay.classList.toggle('active');
-                document.body.classList.toggle('sidebar-open'); // bodyにクラスを追加/削除
+                document.body.classList.toggle('sidebar-open');
+                // サイドバーが開いたら検索オーバーレイを閉じる
+                if (customSearchOverlay.classList.contains('active')) {
+                    customSearchOverlay.classList.remove('active');
+                }
             }
 
-            if (menuToggle) { // menuToggleが存在するか確認
+            function toggleSearchOverlay() {
+                customSearchOverlay.classList.toggle('active');
+                // 検索オーバーレイが開いたらサイドバーを閉じる
+                if (sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                }
+                // 検索オーバーレイが開いたら検索フィールドにフォーカス
+                if (customSearchOverlay.classList.contains('active')) {
+                    // Google CSEの検索入力フィールドにフォーカスする
+                    // gcse-searchbox-only クラス内の input 要素を探す
+                    const searchInput = customSearchOverlay.querySelector('.gsc-input');
+                    if (searchInput) {
+                        searchInput.focus();
+                    }
+                }
+            }
+
+
+            if (menuToggle) {
                 menuToggle.addEventListener('click', toggleSidebar);
             }
-            if (closeSidebar) { // closeSidebarが存在するか確認
+            if (closeSidebar) {
                 closeSidebar.addEventListener('click', toggleSidebar);
             }
-            if (overlay) { // overlayが存在するか確認
+            if (overlay) {
                 overlay.addEventListener('click', toggleSidebar);
             }
 
@@ -203,6 +234,32 @@
                     overlay.classList.remove('active');
                     document.body.classList.remove('sidebar-open');
                 });
+            });
+
+            // 検索ボタンのイベントリスナー
+            if (searchToggle) {
+                searchToggle.addEventListener('click', toggleSearchOverlay);
+            }
+
+            // オーバーレイクリックで検索オーバーレイを閉じる (サイドバーと共有)
+            if (overlay) {
+                overlay.addEventListener('click', () => {
+                    if (customSearchOverlay.classList.contains('active')) {
+                        customSearchOverlay.classList.remove('active');
+                    }
+                });
+            }
+
+            // ESCキーでオーバーレイとサイドバーを閉じる
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    if (sidebar.classList.contains('active')) {
+                        toggleSidebar();
+                    }
+                    if (customSearchOverlay.classList.contains('active')) {
+                        toggleSearchOverlay();
+                    }
+                }
             });
         });
     </script>
