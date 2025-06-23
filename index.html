@@ -88,68 +88,76 @@
     </div>
     <div class="overlay" id="overlay"></div>
 
+    <div id="customSearchOverlay">
+        <div class="gcse-searchbox-only" data-gname="mySearch"></div>
+        <div class="gcse-searchresults-only" data-gname="mySearch"></div>
+    </div>
+
+    <script async src="https://cse.google.com/cse.js?cx=a09bf9a03237c49f6"></script>
+
     <script>
-        // サイドバーの開閉JavaScript (共通)
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const closeSidebar = document.querySelector('.close-sidebar');
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    // サイドバーの開閉JavaScript (共通)
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const closeSidebar = document.querySelector('.close-sidebar');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-            function toggleSidebar() {
-                sidebar.classList.toggle('active');
-                overlay.classList.toggle('active');
-                document.body.classList.toggle('sidebar-open'); // bodyにクラスを追加/削除
-            }
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.classList.toggle('sidebar-open'); // bodyにクラスを追加/削除
+        }
 
-            if (menuToggle) { // menuToggleが存在するか確認
-                menuToggle.addEventListener('click', toggleSidebar);
-            }
-            if (closeSidebar) { // closeSidebarが存在するか確認
-                closeSidebar.addEventListener('click', toggleSidebar);
-            }
-            if (overlay) { // overlayが存在するか確認
-                overlay.addEventListener('click', toggleSidebar);
-            }
+        if (menuToggle) {
+            menuToggle.addEventListener('click', toggleSidebar);
+        }
+        if (closeSidebar) {
+            closeSidebar.addEventListener('click', toggleSidebar);
+        }
+        if (overlay) {
+            overlay.addEventListener('click', toggleSidebar);
+        }
 
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    sidebar.classList.remove('active');
-                    overlay.classList.remove('active');
-                    document.body.classList.remove('sidebar-open');
-                });
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
             });
         });
-    </script>
-    
-    <script async src="https://cse.google.com/cse.js?cx=a09bf9a03237c49f6"></script>
-    <div class="gcse-searchbox-only" data-gname="mySearch"></div>
 
-    <script>
-    // 検索アイコンのクリックを処理する関数
-    function handleSearchIconClick(event) {
-        event.preventDefault(); // これがURLが # に変わるのを防ぎます！
-        console.log('Search icon clicked. Attempting to open CSE.'); // 追加ログ
+        // 検索オーバーレイの表示/非表示を制御するJavaScript
+        const searchIconTrigger = document.getElementById('searchIconTrigger');
+        const customSearchOverlay = document.getElementById('customSearchOverlay');
 
-        // Google CSE API がロードされているか確認
-        if (typeof google !== 'undefined' && google.search && google.search.cse && google.search.cse.element) {
-            console.log('Google CSE API is loaded. Calling google.search.cse.element.go("mySearch").'); // 追加ログ
-            google.search.cse.element.go('mySearch');
-        } else {
-            console.warn('Google Custom Search API is not yet loaded. Cannot open search overlay.'); // 追加ログ
-        }
-    }
+        if (searchIconTrigger && customSearchOverlay) {
+            searchIconTrigger.addEventListener('click', function(event) {
+                event.preventDefault(); // #が付くのを防止
 
-    // DOMコンテンツが完全にロードされたらイベントリスナーを設定
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOMContentLoaded fired. Setting up search trigger.'); // 追加ログ
-        var trigger = document.getElementById('searchIconTrigger');
-        if (trigger) {
-            console.log('Search icon trigger found.'); // 追加ログ
-            trigger.addEventListener('click', handleSearchIconClick);
-        } else {
-            console.error('Error: Search icon trigger (ID "searchIconTrigger") not found in the DOM.'); // 追加ログ
+                // オーバーレイの表示/非表示を切り替える
+                customSearchOverlay.classList.toggle('active');
+
+                // Google CSEの検索ボックスを起動（初回表示時など）
+                // APIがロードされていることを確認してから呼び出す
+                if (customSearchOverlay.classList.contains('active') &&
+                    typeof google !== 'undefined' && google.search &&
+                    google.search.cse && google.search.cse.element) {
+
+                    // 検索ボックスにフォーカスを当てるなど、追加の動作が必要な場合はここに追加
+                    // 例: google.search.cse.element.get='mySearch'.clearResults(); // 結果をクリア
+                    google.search.cse.element.go('mySearch'); // 検索ボックスと結果を表示
+                } else if (!customSearchOverlay.classList.contains('active')) {
+                    // オーバーレイが非表示になる際に、検索結果をクリアする（任意）
+                    if (typeof google !== 'undefined' && google.search && google.search.cse && google.search.cse.element) {
+                        const cse = google.search.cse.element.get('mySearch');
+                        if (cse && cse.clearResults) {
+                            cse.clearResults();
+                        }
+                    }
+                }
+            });
         }
     });
     </script>

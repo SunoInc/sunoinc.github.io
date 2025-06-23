@@ -1,12 +1,12 @@
 /* ベーススタイル */
 body {
-    font-family: 'Noto Sans JP', sans-serif; /* Google FontsのNoto Sans JPを使用 */
+    font-family: 'Noto Sans JP', sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; /* スクリーンショットの背景色に調整 */
+    background-color: #f9f9f9;
     color: #333;
-    overflow-x: hidden; /* 横スクロールバーを非表示にする */
+    overflow-x: hidden;
 }
 
 /* ヘッダー (共通) */
@@ -17,9 +17,9 @@ body {
     padding: 15px 25px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    position: sticky;
+    position: relative; /* #customSearchOverlayのposition:absoluteの基準となる */
     top: 0;
-    z-index: 1000;
+    z-index: 1001; /* 検索ボックスより手前に来るように少し高く */
 }
 
 .header-left {
@@ -35,7 +35,7 @@ body {
 }
 
 .logo {
-    height: 30px; /* ロゴの高さに合わせて調整 */
+    height: 30px;
     width: auto;
 }
 
@@ -48,19 +48,19 @@ body {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 20px; /* アイコン間のスペース */
+    gap: 20px;
 }
 
 /* ヘッダー内のFont Awesomeアイコンのスタイル */
 .header-right i,
 .header-left .menu-toggle i {
-    font-size: 1.2rem; /* デフォルトサイズ */
+    font-size: 1.2rem;
     color: #555;
     cursor: pointer;
 }
 
 .header-right a {
-    color: #555; /* リンクの色をアイコンに合わせる */
+    color: #555;
     text-decoration: none;
 }
 
@@ -72,25 +72,25 @@ button {
     color: #555;
 }
 
-/* Homeページのハンバーガーメニューアイコンサイズ (Kartee Helpに合わせる) */
+/* Homeページのハンバーガーメニューアイコンサイズ */
 .header .menu-toggle i {
-    font-size: 1.5rem; /* Kartee Helpに合わせたハンバーガーアイコンのサイズ */
-    color: #333; /* Kartee Helpに合わせた色 */
+    font-size: 1.5rem;
+    color: #333;
 }
 
 /* ヒーローセクション */
 .hero-section {
     display: flex;
-    flex-direction: column; /* モバイルでは縦並び */
+    flex-direction: column;
     align-items: center;
     padding: 60px 25px;
     background-color: #f9f9f9;
-    min-height: 60vh; /* ある程度の高さを確保 */
+    min-height: 60vh;
 }
 
 @media (min-width: 768px) {
     .hero-section {
-        flex-direction: row; /* デスクトップでは横並び */
+        flex-direction: row;
         justify-content: center;
         gap: 50px;
         text-align: left;
@@ -98,7 +98,7 @@ button {
 
     .hero-content {
         flex: 1;
-        max-width: 500px; /* コンテンツの最大幅を制限 */
+        max-width: 500px;
     }
 
     .hero-image {
@@ -110,7 +110,7 @@ button {
 }
 
 .hero-content h1 {
-    font-size: 2.8rem; /* スクリーンショットのタイトルサイズに調整 */
+    font-size: 2.8rem;
     max-width: 450px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -127,7 +127,7 @@ button {
     flex: 1;
     max-width: 100%;
     height: auto;
-    width: 400px; /* スクリーンショットの画像サイズに合わせて調整 */
+    width: 400px;
 }
 
 /* メイン機能セクション */
@@ -146,7 +146,7 @@ button {
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* レスポンシブなグリッド */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
@@ -156,7 +156,7 @@ button {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* スクリーンショットの影を再現 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,9 +164,9 @@ button {
 }
 
 .feature-item img {
-    max-width: 100%; /* 画像がコンテナに収まるように */
+    max-width: 100%;
     height: auto;
-    border-radius: 5px; /* 角丸のスマートフォンUIを考慮 */
+    border-radius: 5px;
     margin-bottom: 20px;
 }
 
@@ -186,7 +186,7 @@ button {
 }
 
 .footer a {
-    color: #007bff; /* リンクの色 */
+    color: #007bff;
     text-decoration: none;
 }
 
@@ -198,26 +198,26 @@ button {
 .sidebar {
     position: fixed;
     top: 0;
-    left: -220px; /* 初期状態では画面外に隠す (Kartee Helpの幅に合わせる) */
-    width: 200px; /* Kartee Helpの幅に合わせる */
+    left: -220px;
+    width: 200px;
     height: 100%;
-    background-color: #f8f8f8; /* Kartee Helpの背景色に合わせる */
+    background-color: #f8f8f8;
     box-shadow: 2px 0 5px rgba(0,0,0,0.2);
     transition: left 0.3s ease-in-out;
     z-index: 2000;
-    padding-top: 60px; /* クローズボタンとの重なりを避けるため */
+    padding-top: 60px;
 }
 
 .sidebar.active {
-    left: 0; /* アクティブ時に画面内へ */
+    left: 0;
 }
 
 .close-sidebar {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 2em; /* Kartee Helpのサイズに合わせる */
-    color: #333; /* Kartee Helpの色に合わせる */
+    font-size: 2em;
+    color: #333;
     background: none;
     border: none;
     cursor: pointer;
@@ -240,7 +240,7 @@ button {
     color: #333;
     font-size: 1rem;
     font-weight: 400;
-    font-family: 'Noto Sans JP', sans-serif; /* この行を追加 */
+    font-family: 'Noto Sans JP', sans-serif;
     display: block;
     padding: 15px 20px;
     border-bottom: 1px solid #eee;
@@ -248,8 +248,8 @@ button {
 }
 
 .sidebar ul li a:hover {
-    color: #007bff; /* Kartee Helpのホバー色に合わせる */
-    background-color: #e0e0e0; /* Kartee Helpのホバー背景色に合わせる */
+    color: #007bff;
+    background-color: #e0e0e0;
 }
 
 .overlay {
@@ -286,7 +286,7 @@ body.sidebar-open {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* 角丸のため */
+    overflow: hidden;
 }
 
 .help-details {
@@ -304,9 +304,9 @@ body.sidebar-open {
     font-size: 1.2em;
     font-weight: bold;
     cursor: pointer;
-    list-style: none; /* デフォルトのマーカーを削除 */
-    position: relative; /* 矢印の位置調整用 */
-    justify-content: space-between; /* 子要素を両端に配置 */
+    list-style: none;
+    position: relative;
+    justify-content: space-between;
 }
 
 /* Chromeなどのブラウザでdetailsのデフォルトマーカーを消す */
@@ -327,7 +327,7 @@ details > summary::marker {
 /* テキスト部分がアイコンと矢印の間のスペースを占めるように調整 */
 .help-summary > span:first-of-type {
     flex-grow: 1;
-    margin-right: auto; /* テキストと矢印の間にスペースを最大限取る */
+    margin-right: auto;
 }
 
 .arrow {
@@ -336,9 +336,9 @@ details > summary::marker {
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 6px solid #333;
-    margin-left: 15px; /* 矢印の左マージンを調整 */
+    margin-left: 15px;
     transition: transform 0.2s ease-in-out;
-    flex-shrink: 0; /* 矢印が縮まないように */
+    flex-shrink: 0;
 }
 
 .help-details[open] .arrow {
@@ -346,7 +346,7 @@ details > summary::marker {
 }
 
 .details-content {
-    padding: 10px 20px 20px 65px; /* 左側にアイコンの分の余白 */
+    padding: 10px 20px 20px 65px;
     font-size: 0.95em;
     color: #555;
     line-height: 1.8;
@@ -357,7 +357,7 @@ details > summary::marker {
 }
 
 .details-content ul {
-    list-style-type: disc; /* リストのマーカー */
+    list-style-type: disc;
     margin-left: 20px;
     padding-left: 0;
 }
@@ -371,11 +371,11 @@ details > summary::marker {
     margin: 20px;
     padding: 20px;
     max-width: 800px;
-    margin-left: auto; /* 中央寄せ */
-    margin-right: auto; /* 中央寄せ */
-    color: #333; /* 文字色を明示 */
-    background-color: #f4f4f4; /* 背景色を明示 */
-    padding-top: 20px; /* ヘッダーの高さ考慮 */
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+    background-color: #f4f4f4;
+    padding-top: 20px;
 }
 
 .privacy-policy-content h1 {
@@ -408,34 +408,30 @@ details > summary::marker {
 
 /* レスポンシブ調整 */
 @media (max-width: 768px) {
-    /* ヘッダーのパディング調整 */
     .header {
         padding: 10px 15px;
     }
     
-    /* ロゴエリアの調整 */
     .logo-area {
-        flex-direction: row; /* モバイルでロゴとサブテキストを横並びに */
+        flex-direction: row;
         align-items: center;
         gap: 5px;
     }
     .logo {
-        height: 25px; /* モバイルでのロゴサイズ調整 */
+        height: 25px;
     }
     .logo-subtext {
-        font-size: 0.7rem; /* モバイルでのサブテキストサイズ調整 */
+        font-size: 0.7rem;
     }
 
-    /* ヘッダー内のアイコンサイズ調整 */
     .header-right i,
     .header-left .menu-toggle i {
-        font-size: 1.3rem; /* モバイルでのアイコンサイズ調整 */
+        font-size: 1.3rem;
     }
     .header-right {
-        gap: 15px; /* モバイルでのアイコン間スペース調整 */
+        gap: 15px;
     }
 
-    /* ヒーローセクション */
     .hero-section {
         padding: 40px 15px;
         text-align: center;
@@ -448,10 +444,9 @@ details > summary::marker {
         font-size: 1rem;
     }
     .hero-image img {
-        width: 300px; /* モバイルでの画像サイズ調整 */
+        width: 300px;
     }
 
-    /* 機能セクション */
     .features-section {
         padding: 50px 15px;
     }
@@ -460,7 +455,7 @@ details > summary::marker {
         margin-bottom: 30px;
     }
     .feature-grid {
-        grid-template-columns: 1fr; /* モバイルでは1列に */
+        grid-template-columns: 1fr;
         gap: 30px;
     }
     .feature-item img {
@@ -470,28 +465,25 @@ details > summary::marker {
         font-size: 0.95rem;
     }
 
-    /* フッター */
     .footer {
         padding: 30px 15px;
         font-size: 0.9rem;
     }
 
-    /* サイドバーのモバイル調整 */
     .sidebar {
-        width: 180px; /* モバイルでの幅調整 */
+        width: 180px;
         padding-top: 50px;
-        left: -190px; /* モバイルでの非表示位置 */
+        left: -190px;
     }
     .close-sidebar {
         font-size: 1.8em;
     }
     .sidebar ul li a {
-        font-size: 0.95rem; /* モバイルでのフォントサイズに再調整 */
+        font-size: 0.95rem;
         padding: 12px 15px;
     }
 
-    /* Kartee Helpページ固有のモバイル調整 */
-    .help-summary {
+    .kartee-help-main {
         font-size: 1.1em;
         padding: 12px 15px;
     }
@@ -504,56 +496,100 @@ details > summary::marker {
         padding: 10px 15px 15px 50px;
     }
 
-    /* Privacy Policyページ固有のモバイル調整 */
     .privacy-policy-content {
         margin: 15px;
         padding: 15px;
-        padding-top: 15px; /* ヘッダーの高さ考慮 */
+        padding-top: 15px;
     }
 }
 
-/* Google Custom Search オーバーレイの表示位置とスタイルを修正 */
-/*
-  これらのスタイルは、Google CSEが生成するオーバーレイ要素に
-  適切な位置決めと表示を強制するためのものです。
-  必要に応じてz-indexの値を調整してください。
-*/
-.gsc-overlay-wrapper { /* Google CSEのオーバーレイの親要素 */
-    position: fixed;
-    top: 0;
-    left: 0;
+/* 新しい検索オーバーレイのスタイル */
+#customSearchOverlay {
+    position: absolute;
+    /* top: calc(100% + 10px); はヘッダーの高さに依存するので、具体的な値に調整することも検討 */
+    top: 60px; /* ヘッダーの高さに応じて調整してください */
+    right: 25px; /* 右端からの距離（header-rightのパディングに合わせる） */
+    width: 350px; /* 検索バーの幅を調整 */
+    max-width: calc(100% - 50px); /* 左右25pxのパディングを考慮 */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* ヘッダーより低く、しかしコンテンツより高く */
+    padding: 15px;
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+}
+
+#customSearchOverlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Google CSE 検索ボックスの内部要素のスタイル調整 */
+/* ここは特に重要です。gcse-searchbox-onlyがないので、gcse-searchresults-onlyが生成する要素にスタイルを適用します */
+#customSearchOverlay .gsc-control-cse {
+    padding: 0;
+}
+
+#customSearchOverlay .gsc-search-box {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    height: 100%;
-    z-index: 9999; /* 他の要素より前面に表示されるように高く設定 */
-    display: flex; /* 子要素を中央に配置 */
-    justify-content: center;
-    align-items: flex-start; /* 画面上部に寄せる */
-    padding-top: 50px; /* 必要に応じて調整 */
-    background-color: rgba(0, 0, 0, 0.5); /* 半透明の背景 */
-    pointer-events: none; /* 初期状態ではクリックイベントを受け付けない */
-    visibility: hidden; /* 初期状態では非表示 */
-    opacity: 0; /* フェードイン/アウト用 */
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    border: none;
+    box-shadow: none;
 }
 
-.gsc-overlay-wrapper.gsc-overlay-shown { /* オーバーレイ表示時に適用されるクラス */
-    pointer-events: auto; /* クリックイベントを受け付ける */
-    visibility: visible; /* 表示 */
-    opacity: 1; /* フェードイン */
+#customSearchOverlay .gsc-input {
+    width: 100% !important;
+    box-sizing: border-box;
+    /* その他の入力フィールドのスタイル調整 */
 }
 
-/* 検索ボックス本体のスタイル調整（必要であれば） */
-.gsc-search-box {
-    max-width: 600px; /* 検索ボックスの最大幅を制限 */
-    width: 90%; /* レスポンシブ対応 */
-    margin-top: 20px; /* 上からの余白 */
-    /* background-colorなどを調整したい場合はここに追加 */
+#customSearchOverlay input.gsc-search-button {
+    display: none;
 }
 
-/* 検索結果フレームのスタイル調整（必要であれば） */
-.gsc-results-wrapper {
-    /* 検索結果の表示領域に関するスタイル */
-    /* height: auto; */
-    /* max-height: calc(100% - 100px); */ /* 画面サイズに合わせた高さ調整 */
-    /* overflow-y: auto; */
+/* Google CSE 検索結果のスタイル調整 */
+#customSearchOverlay .gsc-results-wrapper-overlay {
+    /* 「結果のみ」レイアウトではこのクラスは使われないかもしれません */
+    /* 代わりにgcse-searchresults-onlyの子要素を確認する */
+}
+
+#customSearchOverlay .gsc-webResult {
+    /* 個々の検索結果のスタイル */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#customSearchOverlay .gsc-result-info {
+    /* 検索結果のメタ情報 */
+    font-size: 0.9em;
+    color: #666;
+}
+
+#customSearchOverlay .gs-title {
+    /* 検索結果のタイトル */
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#customSearchOverlay .gs-snippet {
+    /* 検索結果のスニペット */
+    font-size: 0.9em;
+    color: #444;
+}
+
+/* スマホでの位置調整 */
+@media (max-width: 768px) {
+    #customSearchOverlay {
+        top: 50px; /* ヘッダーのモバイル時の高さに合わせて調整 */
+        right: 15px; /* 右端からの距離（header-rightのモバイル時のパディングに合わせる） */
+        max-width: calc(100% - 30px); /* 左右15pxのパディングを考慮 */
+    }
 }
