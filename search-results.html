@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索結果 - Kartee</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <script async src="https://cse.google.com/cse.js?cx=a09bf9a03237c49f6"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-toggle" aria-label="メニューを開く">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo-area">
+                <img src="assets/images/Kartee.png" alt="Kartee Logo" class="logo">
+                <p class="logo-subtext">記録、振り返り、自分への理解</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="search-toggle" aria-label="検索">
+                <i class="fas fa-search"></i>
+            </button>
+            <a href="https://www.linkedin.com/company/107251717/admin/dashboard/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:home.karte.info@gmail.com" aria-label="Gmail">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="search-results-main">
+        <h1>検索結果</h1>
+        <div class="gcse-searchresults-only"></div>
+    </main>
+
+    <footer class="footer">
+        <p>お問い合わせ： <a href="mailto:home.karte.info@gmail.com">home.karte.info@gmail.com</a></p>
+    </footer>
+
+    <div class="sidebar" id="sidebar">
+        <button class="close-sidebar" aria-label="メニューを閉じる">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="https://sunoinc.github.io" class="sidebar-link">Home</a></li>
+            <li><a href="https://sunoinc.github.io/kartee-help" class="sidebar-link">Kartee Help</a></li>
+            <li><a href="https://sunoinc.github.io/privacy-policy.html" class="sidebar-link">Privacy Policy</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeSidebar = document.querySelector('.close-sidebar');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const searchToggle = document.querySelector('.search-toggle');
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.classList.toggle('sidebar-open');
+            }
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', toggleSidebar);
+            }
+            if (closeSidebar) {
+                closeSidebar.addEventListener('click', toggleSidebar);
+            }
+            if (overlay) {
+                overlay.addEventListener('click', toggleSidebar);
+            }
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                });
+            });
+
+            // 検索ボタンはリンクとして機能させるか、このページでは削除
+            if (searchToggle) {
+                searchToggle.addEventListener('click', () => {
+                    // ここでは何もせず、デフォルトの動作（search-results.html自体への移動）に任せる
+                    // または、必要に応じて別の検索ボックス表示ロジックをここに記述
+                });
+            }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    if (sidebar.classList.contains('active')) {
+                        toggleSidebar();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
